@@ -7,6 +7,7 @@ public class main {
     public static void main(String args[]) {
         System.out.println("Jacob Las");
         System.out.println("Ken Chedrey Duculan");
+        System.out.println("Lyda Samuelle Ballesteros");
         try {
             File documentOne = new File("Doc1.txt");
             Scanner myReader = new Scanner(documentOne);
