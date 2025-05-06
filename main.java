@@ -39,20 +39,25 @@ public class main {
 
     public static void main(String args[]) {
         HashMap <String, HashSet<String>> wordMap = new HashMap<>();
+        Scanner scanner = new Scanner(System.in);
         System.out.println("Jacob Las");
         System.out.println("Ken Chedrey Duculan");
         System.out.println("Lyda Samuelle Ballesteros");
+
         try {
             File documentOne = new File("Doc1.txt");
             Scanner myReader = new Scanner(documentOne);
             while (myReader.hasNextLine()) {
                 String documentOneText = myReader.nextLine();
-                System.out.println(documentOneText);
             }
             myReader.close();
         } catch (FileNotFoundException e) {
             System.out.println("Cannot find document.");
         }
+        System.out.print("Enter search query: ");
+        String userQuery = scanner.nextLine();
+        System.out.println(userQuery);
+
         //Sample hashmap
         wordMap.put("jabol", new HashSet<>(Arrays.asList("Doc1", "Doc2", "Doc3")));
         wordMap.put("elyu", new HashSet<>(Arrays.asList("Doc1", "Doc3")));

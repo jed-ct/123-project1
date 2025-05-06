@@ -1,0 +1,2 @@
+Problems:
+Arrays have a fixed size, so it cannot be used as documents values in the hashmap. So, hash sets were used.
