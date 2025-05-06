@@ -17,9 +17,7 @@ public class main {
                 result.add(documents);
             }
         }
-        for (String docs : result) {
-            System.out.println(docs);
-        }
+        printSet(result);
     }
     //Function to print out the union of hashsets of docs
     public static void printIntersectionOfSets(ArrayList<HashSet<String>> setOfDocuments) {
@@ -29,8 +27,53 @@ public class main {
             //Intersect this hashset of all documents to all sets
             neededDocuments.retainAll(hashset);
         }
-        for (String docs : neededDocuments) {
-            System.out.println(docs);
+        if (neededDocuments.isEmpty()) {
+            System.out.println("No common documents found.");
+        }
+        printSet(neededDocuments);
+    }
+
+    public static void printSet(HashSet<String> set) {
+        if (set == null) {
+            System.out.println("Cannot find word in document.");
+        }
+        else {
+            for (String elements : set) {
+                System.out.println(elements);
+            }
+        }
+    }
+
+    public static void retrieveWordLocations(String userQuery, HashMap<String, HashSet<String>> wordMap) {
+        ArrayList<HashSet<String>> arrayOfDocumentSets = new ArrayList<>();
+        if (userQuery.contains(" OR ")) {
+            String[] words = userQuery.split(" OR ");
+            for (String word : words) {
+                if (wordMap.get(word) == null) {
+                    System.out.println("Word " + word + " not found in documents.");
+                    return;
+                }
+                else {
+                    arrayOfDocumentSets.add(wordMap.get(word));
+                }
+            }
+            printUnionOfSets(arrayOfDocumentSets);
+        }
+        else if (userQuery.contains(" AND ")) {
+            String[] words = userQuery.split(" AND ");
+            for (String word : words) {
+                if (wordMap.get(word) == null) {
+                    System.out.println("Word " + word + " not found in documents.");
+                    return;
+                }
+                else {
+                    arrayOfDocumentSets.add(wordMap.get(word));
+                }
+            }
+            printIntersectionOfSets(arrayOfDocumentSets);
+        }
+        else {
+            printSet(wordMap.get(userQuery));
         }
     }
 
@@ -43,7 +86,7 @@ public class main {
         System.out.println("Ken Chedrey Duculan");
         System.out.println("Lyda Samuelle Ballesteros");
 
-        try {
+        /*try {
             File documentOne = new File("Doc1.txt");
             Scanner myReader = new Scanner(documentOne);
             while (myReader.hasNextLine()) {
@@ -52,19 +95,19 @@ public class main {
             myReader.close();
         } catch (FileNotFoundException e) {
             System.out.println("Cannot find document.");
-        }
-        System.out.print("Enter search query: ");
-        String userQuery = scanner.nextLine();
-        System.out.println(userQuery);
-
+        }*/
         //Sample hashmap
         wordMap.put("jabol", new HashSet<>(Arrays.asList("Doc1", "Doc2", "Doc3")));
         wordMap.put("elyu", new HashSet<>(Arrays.asList("Doc1", "Doc3")));
         wordMap.put("bonkers", new HashSet<>(Arrays.asList("Doc2")));
+        wordMap.put("axl", new HashSet<>(Arrays.asList("Doc1")));
+        wordMap.put("bonjers", new HashSet<>(Arrays.asList("Doc3")));
 
-        ArrayList<HashSet<String>> lmao = new ArrayList<>();
-        lmao.add(new HashSet<>(Arrays.asList("Doc1", "Doc2")));
-        lmao.add(new HashSet<>(Arrays.asList("Doc1", "Doc3")));
-        printIntersectionOfSets(lmao);
+        //Get search query from user
+        System.out.print("Enter search query: ");
+        String userQuery = scanner.nextLine();
+
+        //Process the search
+        retrieveWordLocations(userQuery, wordMap);
     }
 }
