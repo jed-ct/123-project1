@@ -28,7 +28,6 @@ public class main {
         for (HashSet<String> hashset : setOfDocuments) {
             //Intersect this hashset of all documents to all sets
             neededDocuments.retainAll(hashset);
-            System.out.println(neededDocuments);
         }
         for (String docs : neededDocuments) {
             System.out.println(docs);
