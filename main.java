@@ -1,5 +1,3 @@
-import java.io.File;  // Import the File class
-import java.io.FileNotFoundException;  // Import this class to handle errors
 import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -8,6 +6,10 @@ import java.util.Scanner; // Import the Scanner class to read text files
 
 
 public class main {
+    public static String[] convertToWordArray(String sentence) {
+        return sentence.replaceAll("[^a-zA-Z ]", "").split(" ");
+    }
+
     //Function to print out the union of hashsets of docs
     public static void printUnionOfSets(ArrayList<HashSet<String>> setOfDocuments) {
         HashSet<String> result = new HashSet<>();
@@ -43,10 +45,10 @@ public class main {
             }
         }
     }
-
-    public static void retrieveWordLocations(String userQuery, HashMap<String, HashSet<String>> wordMap) {
+    public static void retrieveWordLocations(String userQuery, HashMap<String,HashSet<String>> wordMap) {
         ArrayList<HashSet<String>> arrayOfDocumentSets = new ArrayList<>();
-        if (userQuery.contains(" OR ")) {
+        if (userQuery.contains("OR")) {
+            //Normalize the array by removing space and punctuations
             String[] words = userQuery.split(" OR ");
             for (String word : words) {
                 if (wordMap.get(word) == null) {
@@ -59,7 +61,7 @@ public class main {
             }
             printUnionOfSets(arrayOfDocumentSets);
         }
-        else if (userQuery.contains(" AND ")) {
+        else if (userQuery.contains("AND")) {
             String[] words = userQuery.split(" AND ");
             for (String word : words) {
                 if (wordMap.get(word) == null) {
@@ -77,31 +79,36 @@ public class main {
         }
     }
 
+    public static void addToWordMap(String[] wordArray, HashMap<String, HashSet<String>> wordMap,String documentName) {
+        for (String word : wordArray) {
+            if (wordMap.get(word) != null) {
+                wordMap.get(word).add(documentName);
+            }
+            else {
+                wordMap.put(word, new HashSet<>(Arrays.asList(documentName)));
+            }
+        }
+    }
+
 
 
     public static void main(String args[]) {
-        HashMap <String, HashSet<String>> wordMap = new HashMap<>();
+        HashMap<String, HashSet<String>> wordMap = new HashMap<>();
         Scanner scanner = new Scanner(System.in);
         System.out.println("Jacob Las");
         System.out.println("Ken Chedrey Duculan");
         System.out.println("Lyda Samuelle Ballesteros");
-
-        /*try {
-            File documentOne = new File("Doc1.txt");
-            Scanner myReader = new Scanner(documentOne);
-            while (myReader.hasNextLine()) {
-                String documentOneText = myReader.nextLine();
-            }
-            myReader.close();
-        } catch (FileNotFoundException e) {
-            System.out.println("Cannot find document.");
-        }*/
         //Sample hashmap
-        wordMap.put("jabol", new HashSet<>(Arrays.asList("Doc1", "Doc2", "Doc3")));
-        wordMap.put("elyu", new HashSet<>(Arrays.asList("Doc1", "Doc3")));
-        wordMap.put("bonkers", new HashSet<>(Arrays.asList("Doc2")));
-        wordMap.put("axl", new HashSet<>(Arrays.asList("Doc1")));
-        wordMap.put("bonjers", new HashSet<>(Arrays.asList("Doc3")));
+        String docOneText = "jabol drop sybau bonkers frisbee";
+        String docTwoText = "wagna jabol bonjers";
+        String docThreeText = "jabol bonjers elyu bonkers";
+        String[] docOneWords = convertToWordArray(docOneText);
+        String[] docTwoWords = convertToWordArray(docTwoText);
+        String[] docThreeWords = convertToWordArray(docThreeText);
+
+        addToWordMap(docOneWords, wordMap, "Doc1");
+        addToWordMap(docTwoWords, wordMap, "Doc2");
+        addToWordMap(docThreeWords, wordMap, "Doc3");
 
         //Get search query from user
         System.out.print("Enter search query: ");
