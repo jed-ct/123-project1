@@ -130,5 +130,6 @@ public class Main {
         //Process the search
         retrieveWordLocations(userQuery, wordMap);
         wordMap.print();
+        System.out.println("Size: " + wordMap.size());
     }
 }

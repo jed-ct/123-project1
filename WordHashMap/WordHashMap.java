@@ -2,7 +2,7 @@ package WordHashMap;
 import java.util.LinkedList;
 import java.util.HashSet;
 
-/*This is a custom implementation of a hash map that stores String keys and associated sets of words (HashSet<String>)
+/*This is a custom implementation of a hash map that stores String keys and associated sets of document names
  as values. It uses an array of linked lists to handle collisions through separate chaining. It supports basic
  operations like put, get, containsKey, size, and print. */
 
