@@ -60,6 +60,7 @@ public class Main {
             //Normalize the array by removing space and punctuations
             String[] words = userQuery.replaceAll("\\s", "").split("OR");
             for (String word : words) {
+                word = word.toLowerCase();
                 if (!wordMap.containsKey(word)) {
                     System.out.println("Word " + word + " not found in documents. Please try again.");
                     return;
@@ -73,6 +74,7 @@ public class Main {
         else if (userQuery.contains(" AND ")) {
             String[] words = userQuery.replaceAll("\\s", "").split("AND");
             for (String word : words) {
+                word = word.toLowerCase();
                 if (!wordMap.containsKey(word)) {
                     System.out.println("Word " + word + " not found in documents. Please try again.");
                     return;
@@ -85,7 +87,7 @@ public class Main {
         }
 
         else {
-            printSet(wordMap.get(userQuery));
+            printSet(wordMap.get(userQuery.toLowerCase()));
         }
     }
     //Adds individual words to hashmap along with their corresponding locations
@@ -110,7 +112,7 @@ public class Main {
         } catch (IOException e) {
             System.out.println("Cannot find document: " + filename);
         }
-        return content.toString().trim().toLowercase();
+        return content.toString().trim().toLowerCase();
     }
 
 
