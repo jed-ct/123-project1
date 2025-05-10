@@ -27,7 +27,7 @@ public class Main {
     //Function to print out the intersection of hashsets of docs
     public static void printIntersectionOfSets(ArrayList<HashSet<String>> setOfDocuments) {
         //Create hashset of all documents
-        HashSet<String> neededDocuments = new HashSet<>(Arrays.asList("Doc1", "Doc2", "Doc3"));
+        HashSet<String> neededDocuments = new HashSet<>(Arrays.asList("Document 1", "Document 2", "Document 3"));
         for (HashSet<String> hashset : setOfDocuments) {
             //Intersect this hashset of document collection to all sets using .retainAll
             neededDocuments.retainAll(hashset);
@@ -52,9 +52,9 @@ public class Main {
     //Retrieves the location of selected word/s across all documents
     public static void retrieveWordLocations(String userQuery, WordHashMap wordMap) {
         ArrayList<HashSet<String>> arrayOfDocumentSets = new ArrayList<>();
-        if (userQuery.contains("OR")) {
+        if (userQuery.contains(" OR ")) {
             //Normalize the array by removing space and punctuations
-            String[] words = userQuery.split(" OR ");
+            String[] words = userQuery.replaceAll("\\s", "").split("OR");
             for (String word : words) {
                 if (!wordMap.containsKey(word)) {
                     System.out.println("Word " + word + " not found in documents.");
@@ -66,8 +66,8 @@ public class Main {
             }
             printUnionOfSets(arrayOfDocumentSets);
         }
-        else if (userQuery.contains("AND")) {
-            String[] words = userQuery.split(" AND ");
+        else if (userQuery.contains(" AND ")) {
+            String[] words = userQuery.replaceAll("\\s", "").split("AND");
             for (String word : words) {
                 if (!wordMap.containsKey(word)) {
                     System.out.println("Word " + word + " not found in documents.");
