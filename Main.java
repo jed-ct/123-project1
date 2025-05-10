@@ -83,6 +83,9 @@ public class Main {
             }
             printIntersectionOfSets(arrayOfDocumentSets);
         }
+        else if (userQuery.contains("AND") || userQuery.contains("OR")) {
+            System.out.println("Error with the logical operator. Please try again.");
+        }
 
         else {
             printSet(wordMap.get(userQuery));
