@@ -134,7 +134,6 @@ public class Main {
         //Get search query from user
         System.out.println("DOCUMENT SEARCH ENGINE");
         System.out.println("By: Frian Karl Nabo, Red De Guzman, Jedric Tuquero \n");
-        System.out.print("Enter search query: ");
         while (true) {
             System.out.print("Enter search query: ");
             String userQuery = scanner.nextLine();
