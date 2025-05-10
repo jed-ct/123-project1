@@ -10,7 +10,7 @@ public class Main {
     //Converts a string into an array of words
     public static String[] convertToWordArray(String sentence) {
         //remove punctuation and use space as separator
-        return sentence.replaceAll("[^a-zA-Z ]", "").split(" ");
+        return sentence.toLowerCase().split("[^a-zA-Z']+");
     }
 
     //Function to print out the union of hashsets
@@ -134,6 +134,7 @@ public class Main {
         //Get search query from user
         System.out.println("DOCUMENT SEARCH ENGINE");
         System.out.println("By: Frian Karl Nabo, Red De Guzman, Jedric Tuquero \n");
+        System.out.print("Enter search query: ");
         while (true) {
             System.out.print("Enter search query: ");
             String userQuery = scanner.nextLine();
