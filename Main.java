@@ -128,10 +128,19 @@ public class Main {
             addToWordMap(words, wordMap, docLabels[i]);
         }
         //Get search query from user
+        System.out.println("DOCUMENT SEARCH ENGINE");
+        System.out.println("By: Frian Karl Nabo, Red De Guzman, Jedric Tuquero \n");
         System.out.print("Enter search query: ");
-        String userQuery = scanner.nextLine();
+        while (true) {
+            System.out.print("Enter search query: ");
+            String userQuery = scanner.nextLine();
+            retrieveWordLocations(userQuery, wordMap);
+            System.out.print("Would you like to try again? (Y/N): ");
+            String choice = scanner.nextLine();
+            if (!choice.toUpperCase().equals("Y")) {
+                break;
+            }
+        }
 
-        //Process the search
-        retrieveWordLocations(userQuery, wordMap);
     }
 }
