@@ -1,1 +1,7 @@
-The sky stretched endlessly above, painted in soft blue and streaked with wisps of white. Light filtered through the leaves, casting dancing shadows along the narrow path. Each step forward was a quiet act of hope—a belief that something better waited beyond the next hill. The dream wasn’t grand or loud; it was simple: to find meaning in motion, in days spent chasing the unknown. The path twisted through meadows and forests, always changing, always teaching. Sometimes, clouds darkened the sky, and the light faded to grey, but even then, the dream endured. It whispered that storms pass, and behind them, the sky clears once more. Every journey is shaped by setbacks and joys, moments of doubt and sparks of wonder. Still, the path calls, as it always has. It invites you to walk, not knowing where it ends but trusting the light to return. In that balance—between fear and faith—the dream grows stronger. And so you keep going, eyes on the horizon, heart full of hope. Somewhere, up ahead, the sky waits with open arms, and the light you seek is already part of the journey.
+Hello class, 
+   The lesson for today is on the remaining types of trees. Watch the video to get an overview. Then answer the activity in the classwork.
+Binary Search Trees
+AVL Trees
+Red-Black Trays
+Splay trees
+Heaps
