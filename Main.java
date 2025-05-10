@@ -52,6 +52,10 @@ public class Main {
     //Retrieves the location of selected word/s across all documents
     public static void retrieveWordLocations(String userQuery, WordHashMap wordMap) {
         ArrayList<HashSet<String>> arrayOfDocumentSets = new ArrayList<>();
+        if (userQuery.contains("OR") && userQuery.contains("AND")) {
+            System.out.println("You can only use one type of logical operator. Please try again.");
+            return;
+        }
         if (userQuery.contains(" OR ")) {
             //Normalize the array by removing space and punctuations
             String[] words = userQuery.replaceAll("\\s", "").split("OR");
@@ -79,6 +83,7 @@ public class Main {
             }
             printIntersectionOfSets(arrayOfDocumentSets);
         }
+
         else {
             printSet(wordMap.get(userQuery));
         }
