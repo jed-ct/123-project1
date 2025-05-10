@@ -4,3 +4,4 @@ Reading of documents was hardcoded, thereby taking more memory in the code. So i
 Scanner is slow. So Bufferred reader was implemented instead.
 Cannot read words with apostrophe. Need to fix.
 Lance Talavera
+Case sensitive words
