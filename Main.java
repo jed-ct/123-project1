@@ -110,7 +110,7 @@ public class Main {
         } catch (IOException e) {
             System.out.println("Cannot find document: " + filename);
         }
-        return content.toString().trim();
+        return content.toString().trim().toLowercase();
     }
 
 
