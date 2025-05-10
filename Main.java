@@ -57,19 +57,23 @@ public class Main {
             return;
         }
         if (userQuery.contains(" OR ")) {
+            boolean oneWordFound = false;
             //Normalize the array by removing space and punctuations
             String[] words = userQuery.replaceAll("\\s", "").split("OR");
             for (String word : words) {
                 word = word.toLowerCase();
-                if (!wordMap.containsKey(word)) {
-                    System.out.println("Word " + word + " not found in documents.");
-                    return;
-                }
-                else {
+                if (wordMap.containsKey(word)) {
                     arrayOfDocumentSets.add(wordMap.get(word));
+                    oneWordFound = true;
+                } 
+                else {
+                    System.out.println("Warning: Word " + word + " not found in documents.");
                 }
+
             }
-            printUnionOfSets(arrayOfDocumentSets);
+            if (oneWordFound) {
+                printUnionOfSets(arrayOfDocumentSets);
+            }
         }
         else if (userQuery.contains(" AND ")) {
             String[] words = userQuery.replaceAll("\\s", "").split("AND");
