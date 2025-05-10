@@ -53,7 +53,7 @@ public class Main {
     public static void retrieveWordLocations(String userQuery, WordHashMap wordMap) {
         ArrayList<HashSet<String>> arrayOfDocumentSets = new ArrayList<>();
         if (userQuery.contains("OR") && userQuery.contains("AND")) {
-            System.out.println("You can only use one type of logical operator. Please try again.");
+            System.out.println("You can only use one type of logical operator.");
             return;
         }
         if (userQuery.contains(" OR ")) {
@@ -62,7 +62,7 @@ public class Main {
             for (String word : words) {
                 word = word.toLowerCase();
                 if (!wordMap.containsKey(word)) {
-                    System.out.println("Word " + word + " not found in documents. Please try again.");
+                    System.out.println("Word " + word + " not found in documents.");
                     return;
                 }
                 else {
@@ -76,7 +76,7 @@ public class Main {
             for (String word : words) {
                 word = word.toLowerCase();
                 if (!wordMap.containsKey(word)) {
-                    System.out.println("Word " + word + " not found in documents. Please try again.");
+                    System.out.println("Word " + word + " not found in documents.");
                     return;
                 }
                 else {
@@ -85,7 +85,9 @@ public class Main {
             }
             printIntersectionOfSets(arrayOfDocumentSets);
         }
-
+        else if (userQuery.contains("AND") || userQuery.contains("OR")) {
+            System.out.println("Error with the logical operator.");
+        }
         else {
             printSet(wordMap.get(userQuery.toLowerCase()));
         }
@@ -112,7 +114,7 @@ public class Main {
         } catch (IOException e) {
             System.out.println("Cannot find document: " + filename);
         }
-        return content.toString().trim();
+        return content.toString().trim().toLowerCase();
     }
 
 
@@ -130,10 +132,18 @@ public class Main {
             addToWordMap(words, wordMap, docLabels[i]);
         }
         //Get search query from user
-        System.out.print("Enter search query: ");
-        String userQuery = scanner.nextLine();
+        System.out.println("DOCUMENT SEARCH ENGINE");
+        System.out.println("By: Frian Karl Nabo, Red De Guzman, Jedric Tuquero \n");
+        while (true) {
+            System.out.print("Enter search query: ");
+            String userQuery = scanner.nextLine();
+            retrieveWordLocations(userQuery, wordMap);
+            System.out.print("Would you like to try again? (Y/N): ");
+            String choice = scanner.nextLine();
+            if (!choice.toUpperCase().equals("Y")) {
+                break;
+            }
+        }
 
-        //Process the search
-        retrieveWordLocations(userQuery, wordMap);
     }
 }
