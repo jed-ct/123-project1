@@ -2,8 +2,14 @@ package WordHashMap;
 import java.util.LinkedList;
 import java.util.HashSet;
 
+/*This is a custom implementation of a hash map that stores String keys and associated sets of words (HashSet<String>)
+ as values. It uses an array of linked lists to handle collisions through separate chaining. It supports basic
+ operations like put, get, containsKey, size, and print. */
+
+
+//This is the object that would be stored in the hashmap
 class WordEntry {
-    private String key;
+    private final String key;
     private HashSet<String> value;
     WordEntry next;
 
@@ -16,6 +22,7 @@ class WordEntry {
     public String getKey() {
         return key;
     }
+    //No setter for key because it will not be modified
 
     public HashSet<String> getValue() {
         return value;
@@ -26,28 +33,31 @@ class WordEntry {
     }
 }
 
+//Main hashmap implementation
 public class WordHashMap {
-    //An array of linked lists serves as the hash table
+    //An array of linked lists will serve as the hashmap in order for separate chaining to be utilized
     private LinkedList<WordEntry>[] table;
     private int mapCapacity;
     private int size;
 
+    //Constructs hashmap with a specified capacity
     public WordHashMap(int initialCapacity) {
         this.mapCapacity = initialCapacity;
         this.table = new LinkedList[initialCapacity];
         this.size = 0;
     }
-
+    //The Hash function that generates the index used to navigate the array of linked lists
     private int hash(String key) {
         if (key == null) {
             return 0;
         }
         return Math.abs(key.hashCode()) % mapCapacity;
     }
-
+    //Adds an entry to the hashmap
     public void put(String key, HashSet<String> value) {
+        //We call a slot in the linked list array a "bucket"
         int bucketIndex = hash(key);
-        //Create new linked list if a bucket is empty
+        //Initialize new linked list if a bucket is empty
         if (table[bucketIndex] == null) {
             table[bucketIndex] = new LinkedList<>();
         }
@@ -59,10 +69,12 @@ public class WordHashMap {
                 return;
             }
         }
+        //If the key wasn’t found, adds a new node (key-value pair) to the end of the list and resolve collision
         bucket.add(new WordEntry(key, value));
         size++;
     }
 
+    //Returns value of a key in the hashmap
     public HashSet<String> get(String key) {
         if (key == null) {
             return null;
@@ -81,7 +93,7 @@ public class WordHashMap {
         //Return null if key is not present
         return null;
     }
-
+    //Returns true if key is present in the hashmap
     public boolean containsKey(String key) {
         if (key == null) {
             return false;
@@ -97,6 +109,7 @@ public class WordHashMap {
         }
         return false;
     }
+    //For debugging purposes
     public int size() {
         return size;
     }
