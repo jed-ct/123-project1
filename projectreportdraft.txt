@@ -1,2 +1,6 @@
 Problems:
 Arrays have a fixed size, so it cannot be used as documents values in the hashmap. So, hash sets were used.
+Reading of documents was hardcoded, thereby taking more memory in the code. So implemented a for loop
+Scanner is slow. So Bufferred reader was implemented instead.
+Cannot read words with apostrophe. Need to fix.
+Lance Talavera

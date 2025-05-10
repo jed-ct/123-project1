@@ -1,4 +1,5 @@
 //Import necessary libraries
+import java.io.*;
 import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -94,6 +95,18 @@ public class Main {
         }
     }
 
+    public static String readDocument(String filename) {
+        StringBuilder content = new StringBuilder();
+        try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                content.append(line).append(" ");
+            }
+        } catch (IOException e) {
+            System.out.println("Cannot find document: " + filename);
+        }
+        return content.toString().trim();
+    }
 
 
 
@@ -101,16 +114,14 @@ public class Main {
         WordHashMap wordMap = new WordHashMap(50);
         Scanner scanner = new Scanner(System.in);
         //Sample hashmap
-        String docOneText = "jabol drop sybau bonkers frisbee";
-        String docTwoText = "wagna jabol bonjers";
-        String docThreeText = "jabol bonjers elyu bonkers";
-        String[] docOneWords = convertToWordArray(docOneText);
-        String[] docTwoWords = convertToWordArray(docTwoText);
-        String[] docThreeWords = convertToWordArray(docThreeText);
+        String[] docFiles = {"Doc1.txt", "Doc2.txt", "Doc3.txt"};
+        String[] docLabels = {"Document 1", "Document 2", "Document 3"};
 
-        addToWordMap(docOneWords, wordMap, "Doc1");
-        addToWordMap(docTwoWords, wordMap, "Doc2");
-        addToWordMap(docThreeWords, wordMap, "Doc3");
+        for (int i = 0; i < docFiles.length; i++) {
+            String content = readDocument(docFiles[i]);
+            String[] words = convertToWordArray(content);
+            addToWordMap(words, wordMap, docLabels[i]);
+        }
 
         //Get search query from user
         System.out.print("Enter search query: ");

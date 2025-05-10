@@ -1,2 +1,7 @@
-born to momol, forced to jabol
-wag na
+Hello class, 
+   The lesson for today is on the remaining types of trees. Watch the video to get an overview. Then answer the activity in the classwork.
+Binary Search Trees
+AVL Trees
+Red-Black Trays
+Splay trees
+Heaps
