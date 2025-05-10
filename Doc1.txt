@@ -5,3 +5,5 @@ AVL Trees
 Red-Black Trays
 Splay trees
 Heaps
+or
+and
