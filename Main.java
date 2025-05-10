@@ -61,7 +61,7 @@ public class Main {
             String[] words = userQuery.replaceAll("\\s", "").split("OR");
             for (String word : words) {
                 if (!wordMap.containsKey(word)) {
-                    System.out.println("Word " + word + " not found in documents.");
+                    System.out.println("Word " + word + " not found in documents. Please try again.");
                     return;
                 }
                 else {
@@ -74,7 +74,7 @@ public class Main {
             String[] words = userQuery.replaceAll("\\s", "").split("AND");
             for (String word : words) {
                 if (!wordMap.containsKey(word)) {
-                    System.out.println("Word " + word + " not found in documents.");
+                    System.out.println("Word " + word + " not found in documents. Please try again.");
                     return;
                 }
                 else {
@@ -127,7 +127,6 @@ public class Main {
             String[] words = convertToWordArray(content);
             addToWordMap(words, wordMap, docLabels[i]);
         }
-
         //Get search query from user
         System.out.print("Enter search query: ");
         String userQuery = scanner.nextLine();
