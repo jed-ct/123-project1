@@ -1,12 +1,11 @@
 //Import necessary libraries
 import java.util.Arrays;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Scanner;
+import WordHashMap.WordHashMap;
 
-
-public class main {
+public class Main {
     //Converts a string into an array of words
     public static String[] convertToWordArray(String sentence) {
         //remove punctuation and use space as separator
@@ -50,13 +49,13 @@ public class main {
         }
     }
     //Retrieves the location of selected word/s across all documents
-    public static void retrieveWordLocations(String userQuery, HashMap<String,HashSet<String>> wordMap) {
+    public static void retrieveWordLocations(String userQuery, WordHashMap wordMap) {
         ArrayList<HashSet<String>> arrayOfDocumentSets = new ArrayList<>();
         if (userQuery.contains("OR")) {
             //Normalize the array by removing space and punctuations
             String[] words = userQuery.split(" OR ");
             for (String word : words) {
-                if (wordMap.get(word) == null) {
+                if (!wordMap.containsKey(word)) {
                     System.out.println("Word " + word + " not found in documents.");
                     return;
                 }
@@ -69,7 +68,7 @@ public class main {
         else if (userQuery.contains("AND")) {
             String[] words = userQuery.split(" AND ");
             for (String word : words) {
-                if (wordMap.get(word) == null) {
+                if (!wordMap.containsKey(word)) {
                     System.out.println("Word " + word + " not found in documents.");
                     return;
                 }
@@ -84,7 +83,7 @@ public class main {
         }
     }
     //Adds individual words to hashmap along with their corresponding locations
-    public static void addToWordMap(String[] wordArray, HashMap<String, HashSet<String>> wordMap,String documentName) {
+    public static void addToWordMap(String[] wordArray, WordHashMap wordMap,String documentName) {
         for (String word : wordArray) {
             if (wordMap.get(word) != null) {
                 wordMap.get(word).add(documentName);
@@ -97,12 +96,10 @@ public class main {
 
 
 
+
     public static void main(String args[]) {
-        HashMap<String, HashSet<String>> wordMap = new HashMap<>();
+        WordHashMap wordMap = new WordHashMap(50);
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Jacob Las");
-        System.out.println("Ken Chedrey Duculan");
-        System.out.println("Lyda Samuelle Ballesteros");
         //Sample hashmap
         String docOneText = "jabol drop sybau bonkers frisbee";
         String docTwoText = "wagna jabol bonjers";
@@ -121,5 +118,6 @@ public class main {
 
         //Process the search
         retrieveWordLocations(userQuery, wordMap);
+        wordMap.print();
     }
 }
