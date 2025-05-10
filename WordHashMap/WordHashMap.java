@@ -95,12 +95,12 @@ public class WordHashMap {
     }
     //Returns true if key is present in the hashmap
     public boolean containsKey(String key) {
-        if (key == null) {
+        int bucketIndex = hash(key);
+        LinkedList<WordEntry> bucket = table[bucketIndex];
+        if (key == null || bucket == null) {
             return false;
         }
         else {
-            int bucketIndex = hash(key);
-            LinkedList<WordEntry> bucket = table[bucketIndex];
             for (WordEntry entry : bucket) {
                 if (entry.getKey().equals(key)) {
                     return true;
