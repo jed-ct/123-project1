@@ -10,7 +10,7 @@ public class main {
     //Converts a string into an array of words
     public static String[] convertToWordArray(String sentence) {
         //remove punctuation and use space as separator
-        return sentence.toLowerCase().split("[^a-zA-Z']+");
+        return sentence.toLowerCase().split("^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9]+$");
     }
 
     //Function to print out the union of hashsets
