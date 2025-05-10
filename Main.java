@@ -6,7 +6,7 @@ import java.util.HashSet;
 import java.util.Scanner;
 import WordHashMap.WordHashMap;
 
-public class Main {
+public class main {
     //Converts a string into an array of words
     public static String[] convertToWordArray(String sentence) {
         //remove punctuation and use space as separator
@@ -62,14 +62,13 @@ public class Main {
             String[] words = userQuery.replaceAll("\\s", "").split("OR");
             for (String word : words) {
                 word = word.toLowerCase();
-                if (wordMap.containsKey(word)) {
+                if (wordMap.get(word) != null) {
                     arrayOfDocumentSets.add(wordMap.get(word));
                     oneWordFound = true;
-                } 
+                }
                 else {
                     System.out.println("Warning: Word " + word + " not found in documents.");
                 }
-
             }
             if (oneWordFound) {
                 printUnionOfSets(arrayOfDocumentSets);
