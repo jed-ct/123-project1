@@ -3,7 +3,7 @@ A command-line search engine that maps words to document lists and allows users 
 It uses an array of linked lists to handle collisions through separate chaining. 
 
 ## Instructions
-1. Place the name of your documents in the docFiles array. Make sure they are present in the same folder where Main.java is located. Label them as necessary using the docLabels array.
+1. Place the name of your documents in the `docFiles` array. Make sure they are present in the same folder where `Main.java` is located. Label them as necessary using the `docLabels` array.
 2. Run the program in the terminal or your IDE.
 3. The program will prompt you to enter your query. Supported queries include 
    - a single word search (Ex. `"dog"`)
