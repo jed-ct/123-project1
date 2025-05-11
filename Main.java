@@ -2,7 +2,6 @@
 import java.io.*;
 import java.util.Arrays;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.Scanner;
 import WordHashMap.WordHashMap;
 
@@ -13,45 +12,47 @@ public class Main {
         return sentence.toLowerCase().split("[^a-zA-Z0-9']+");
     }
 
-    //Function to print out the union of hashsets
-    public static void printUnionOfSets(ArrayList<HashSet<String>> setOfDocuments) {
-        HashSet<String> result = new HashSet<>();
-        //Since hashsets ignore duplicate values, we can just add individual elements to it
-        for (HashSet<String> hashset : setOfDocuments) {
-            for (String documents : hashset) {
-                result.add(documents);
+    //Function to print out the union of lists
+    public static void printUnionOfArrays(ArrayList<ArrayList<String>> listOfDocuments) {
+        ArrayList<String> result = new ArrayList<>();
+        for (ArrayList<String> arraylist : listOfDocuments) {
+            for (String documents : arraylist) {
+                    if (!result.contains(documents)) {
+                        result.add(documents);
+                }
             }
         }
-        printSet(result);
+        printList(result);
     }
-    //Function to print out the intersection of hashsets of docs
-    public static void printIntersectionOfSets(ArrayList<HashSet<String>> setOfDocuments) {
-        //Create hashset of all documents
-        HashSet<String> neededDocuments = new HashSet<>(Arrays.asList("Document 1", "Document 2", "Document 3"));
-        for (HashSet<String> hashset : setOfDocuments) {
-            //Intersect this hashset of document collection to all sets using .retainAll
-            neededDocuments.retainAll(hashset);
+    //Function to print out the intersection of list of docs
+    public static void printIntersectionOfArrays(ArrayList<ArrayList<String>> listOfDocuments) {
+        //Create list containing all documents neededDocuments
+        ArrayList<String> neededDocuments = new ArrayList<>(Arrays.asList("Document 1", "Document 2", "Document 3"));
+        for (ArrayList<String> list : listOfDocuments) {
+            //Intersect every list of document location of a word to neededDocuments using .retainAll
+            neededDocuments.retainAll(list);
+            //Stop operation if resulting list is already empty
+            if (neededDocuments.isEmpty()) {
+                System.out.println("No common documents found.");
+                return;
+            }
         }
-        //Print error if no common documents
-        if (neededDocuments.isEmpty()) {
-            System.out.println("No common documents found.");
-        }
-        printSet(neededDocuments);
+        printList(neededDocuments);
     }
-    //Prints hashset
-    public static void printSet(HashSet<String> set) {
-        if (set == null) {
+    //Prints all documents in the list
+    public static void printList(ArrayList<String> list) {
+        if (list == null) {
             System.out.println("Cannot find word in document.");
         }
         else {
-            for (String elements : set) {
+            for (String elements : list) {
                 System.out.println(elements);
             }
         }
     }
     //Retrieves the location of selected word/s across all documents
     public static void retrieveWordLocations(String userQuery, WordHashMap wordMap) {
-        ArrayList<HashSet<String>> arrayOfDocumentSets = new ArrayList<>();
+        ArrayList<ArrayList<String>> arrayOfDocumentLists = new ArrayList<>();
         if (userQuery.contains("OR") && userQuery.contains("AND")) {
             System.out.println("You can only use one type of logical operator.");
             return;
@@ -63,7 +64,7 @@ public class Main {
             for (String word : words) {
                 word = word.toLowerCase();
                 if (wordMap.get(word) != null) {
-                    arrayOfDocumentSets.add(wordMap.get(word));
+                    arrayOfDocumentLists.add(wordMap.get(word));
                     oneWordFound = true;
                 }
                 else {
@@ -71,7 +72,7 @@ public class Main {
                 }
             }
             if (oneWordFound) {
-                printUnionOfSets(arrayOfDocumentSets);
+                printUnionOfArrays(arrayOfDocumentLists);
             }
         }
         else if (userQuery.contains(" AND ")) {
@@ -83,16 +84,16 @@ public class Main {
                     return;
                 }
                 else {
-                    arrayOfDocumentSets.add(wordMap.get(word));
+                    arrayOfDocumentLists.add(wordMap.get(word));
                 }
             }
-            printIntersectionOfSets(arrayOfDocumentSets);
+            printIntersectionOfArrays(arrayOfDocumentLists);
         }
         else if (userQuery.contains("AND") || userQuery.contains("OR")) {
             System.out.println("Error with the logical operator.");
         }
         else {
-            printSet(wordMap.get(userQuery.toLowerCase()));
+            printList(wordMap.get(userQuery.toLowerCase()));
         }
     }
     //Adds individual words to hashmap along with their corresponding locations
@@ -102,7 +103,7 @@ public class Main {
                 wordMap.get(word).add(documentName);
             }
             else {
-                wordMap.put(word, new HashSet<>(Arrays.asList(documentName)));
+                wordMap.put(word, new ArrayList<String>(Arrays.asList(documentName)));
             }
         }
     }

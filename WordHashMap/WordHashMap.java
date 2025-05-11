@@ -1,6 +1,6 @@
 package WordHashMap;
 import java.util.LinkedList;
-import java.util.HashSet;
+import java.util.ArrayList;
 
 /*This is a custom implementation of a hash map that stores String keys and associated sets of document names
  as values. It uses an array of linked lists to handle collisions through separate chaining. It supports basic
@@ -10,9 +10,9 @@ import java.util.HashSet;
 //This is the object that would be stored in the hashmap
 class WordEntry {
     private final String key;
-    private HashSet<String> value;
+    private ArrayList<String> value;
 
-    public WordEntry(String key, HashSet<String> value) {
+    public WordEntry(String key, ArrayList<String> value) {
         this.key = key;
         this.value = value;
     }
@@ -21,11 +21,11 @@ class WordEntry {
     }
     //No setter for key because it will not be modified
 
-    public HashSet<String> getValue() {
+    public ArrayList<String> getValue() {
         return value;
     }
 
-    public void setValue(HashSet<String> value) {
+    public void setValue(ArrayList<String> value) {
         this.value = value;
     }
 }
@@ -51,7 +51,7 @@ public class WordHashMap {
         return Math.abs(key.hashCode()) % mapCapacity;
     }
     //Adds an entry to the hashmap
-    public void put(String key, HashSet<String> value) {
+    public void put(String key, ArrayList<String> value) {
         //We call a slot in the linked list array a "bucket"
         int bucketIndex = hash(key);
         //Initialize new linked list if a bucket is empty
@@ -72,7 +72,7 @@ public class WordHashMap {
     }
 
     //Returns value of a key in the hashmap
-    public HashSet<String> get(String key) {
+    public ArrayList<String> get(String key) {
         if (key == null) {
             return null;
         }
