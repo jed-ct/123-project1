@@ -11,14 +11,11 @@ import java.util.HashSet;
 class WordEntry {
     private final String key;
     private HashSet<String> value;
-    WordEntry next;
 
     public WordEntry(String key, HashSet<String> value) {
         this.key = key;
         this.value = value;
-        this.next = null;
     }
-
     public String getKey() {
         return key;
     }

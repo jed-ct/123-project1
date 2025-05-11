@@ -1,2 +1,3 @@
-Hello class, 
-   There is a pressing matter that needs my attention tomorrow and I will not be able to meet you. Go over the following implementation of the stack using link list. We will have an activity related to this on Thursday. Yes, we will still have your quiz too. 
+Hello class,
+matthew
+   There is a pressing matter that needs my attention tomorrow and I will not be able to meet you. Go over the following implementation of the stack using link list. We will have an activity related to this on Thursday. Yes, we will still have your quiz too.
