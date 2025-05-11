@@ -105,7 +105,7 @@ public class Main {
     //Adds individual words to hashmap along with their corresponding locations
     private static void addToWordMap(String[] wordArray, WordHashMap wordMap,String documentName) {
         for (String word : wordArray) {
-            word = word.toLowercase();
+            word = word.toLowerCase();
             if (wordMap.get(word) != null) {
                 wordMap.get(word).add(documentName);
             }
