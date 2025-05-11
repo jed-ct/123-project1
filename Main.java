@@ -6,14 +6,17 @@ import java.util.Scanner;
 import WordHashMap.WordHashMap;
 
 public class Main {
+    private static String[] docFiles = {"Doc1.txt", "Doc2.txt", "Doc3.txt"};
+    private static String[] docLabels = {"Document 1", "Document 2", "Document 3"};
+
     //Converts a string into an array of words
-    public static String[] convertToWordArray(String sentence) {
+    private static String[] convertToWordArray(String sentence) {
         //remove punctuation and use space as separator
         return sentence.toLowerCase().split("[^a-zA-Z0-9']+");
     }
 
     //Function to print out the union of lists
-    public static void printUnionOfArrays(ArrayList<ArrayList<String>> listOfDocuments) {
+    private static void printUnionOfArrays(ArrayList<ArrayList<String>> listOfDocuments) {
         ArrayList<String> result = new ArrayList<>();
         for (ArrayList<String> arraylist : listOfDocuments) {
             for (String documents : arraylist) {
@@ -25,7 +28,7 @@ public class Main {
         printList(result);
     }
     //Function to print out the intersection of list of docs
-    public static void printIntersectionOfArrays(ArrayList<ArrayList<String>> listOfDocuments) {
+    private static void printIntersectionOfArrays(ArrayList<ArrayList<String>> listOfDocuments) {
         //Create list containing all documents neededDocuments
         ArrayList<String> neededDocuments = new ArrayList<>(Arrays.asList("Document 1", "Document 2", "Document 3"));
         for (ArrayList<String> list : listOfDocuments) {
@@ -40,7 +43,7 @@ public class Main {
         printList(neededDocuments);
     }
     //Prints all documents in the list
-    public static void printList(ArrayList<String> list) {
+    private static void printList(ArrayList<String> list) {
         if (list == null) {
             System.out.println("Cannot find word in document.");
         }
@@ -51,7 +54,7 @@ public class Main {
         }
     }
     //Retrieves the location of selected word/s across all documents
-    public static void retrieveWordLocations(String userQuery, WordHashMap wordMap) {
+    private static void retrieveWordLocations(String userQuery, WordHashMap wordMap) {
         ArrayList<ArrayList<String>> arrayOfDocumentLists = new ArrayList<>();
         if (userQuery.contains("OR") && userQuery.contains("AND")) {
             System.out.println("You can only use one type of logical operator.");
@@ -98,7 +101,7 @@ public class Main {
         }
     }
     //Adds individual words to hashmap along with their corresponding locations
-    public static void addToWordMap(String[] wordArray, WordHashMap wordMap,String documentName) {
+    private static void addToWordMap(String[] wordArray, WordHashMap wordMap,String documentName) {
         for (String word : wordArray) {
             if (wordMap.get(word) != null) {
                 wordMap.get(word).add(documentName);
@@ -110,7 +113,7 @@ public class Main {
     }
 
     //Reads the document file with the corresponding filename
-    public static String readDocument(String filename) {
+    private static String readDocument(String filename) {
         StringBuilder content = new StringBuilder();
         try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
             String line;
@@ -127,10 +130,6 @@ public class Main {
     public static void main(String args[]) {
         WordHashMap wordMap = new WordHashMap(50);
         Scanner scanner = new Scanner(System.in);
-        //Sample hashmap
-        String[] docFiles = {"Doc1.txt", "Doc2.txt", "Doc3.txt"};
-        String[] docLabels = {"Document 1", "Document 2", "Document 3"};
-
         for (int i = 0; i < docFiles.length; i++) {
             String content = readDocument(docFiles[i]);
             String[] words = convertToWordArray(content);
