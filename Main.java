@@ -6,7 +6,9 @@ import java.util.Scanner;
 import WordHashMap.WordHashMap;
 
 public class Main {
+    //List of documents you want to read. Make sure they are present in the same folder where Main.java is located
     private static String[] docFiles = {"Doc1.txt", "Doc2.txt", "Doc3.txt"};
+    //Label of documents that will be outputted in the search engine. Make sure it is the same length as docFiles
     private static String[] docLabels = {"Document 1", "Document 2", "Document 3"};
 
     //Converts a string into an array of words
