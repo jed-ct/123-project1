@@ -105,6 +105,7 @@ public class Main {
     //Adds individual words to hashmap along with their corresponding locations
     private static void addToWordMap(String[] wordArray, WordHashMap wordMap,String documentName) {
         for (String word : wordArray) {
+            word = word.toLowercase();
             if (wordMap.get(word) != null) {
                 wordMap.get(word).add(documentName);
             }
@@ -125,7 +126,7 @@ public class Main {
         } catch (IOException e) {
             System.out.println("Cannot find document: " + filename);
         }
-        return content.toString().trim().toLowerCase();
+        return content.toString().trim();
     }
 
 
