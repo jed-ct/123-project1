@@ -57,11 +57,12 @@ public class Main {
             return;
         }
         if (userQuery.contains(" OR ")) {
-            boolean oneWordFound = false;
+            boolean oneWordFound = false; 
             //Normalize the array by removing space and punctuations
             String[] words = userQuery.replaceAll("\\s", "").split("OR");
             for (String word : words) {
                 word = word.toLowerCase();
+                //Checks if one word in the query does not exist in any document
                 if (wordMap.get(word) != null) {
                     arrayOfDocumentSets.add(wordMap.get(word));
                     oneWordFound = true;
@@ -107,6 +108,7 @@ public class Main {
         }
     }
 
+    //Reads the document file with the corresponding filename
     public static String readDocument(String filename) {
         StringBuilder content = new StringBuilder();
         try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
@@ -119,7 +121,6 @@ public class Main {
         }
         return content.toString().trim().toLowerCase();
     }
-
 
 
     public static void main(String args[]) {
@@ -136,7 +137,7 @@ public class Main {
         }
         //Get search query from user
         System.out.println("DOCUMENT SEARCH ENGINE");
-        System.out.println("By: Frian Karl Nabo, Red De Guzman, Jedric Tuquero \n");
+        System.out.println("By: Duncan Red Benedict De Guzman, Frian Karl Nabo, Jedric Tuquero \n");
         while (true) {
             System.out.print("Enter search query: ");
             String userQuery = scanner.nextLine();
