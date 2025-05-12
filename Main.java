@@ -46,7 +46,7 @@ public class Main {
     //Function to print out the intersection of list of docs
     private static void printIntersectionOfArrays(ArrayList<ArrayList<String>> listOfDocuments) {
         //Create list containing all documents neededDocuments
-        ArrayList<String> neededDocuments = new ArrayList<>(Arrays.asList("Document 1", "Document 2", "Document 3"));
+        ArrayList<String> neededDocuments = new ArrayList<>(Arrays.asList(docLabels));
         for (ArrayList<String> list : listOfDocuments) {
             //Intersect every list of document location of a word to neededDocuments using .retainAll
             neededDocuments.retainAll(list);
@@ -119,9 +119,6 @@ public class Main {
     //Adds individual words to hashmap along with their corresponding locations
     private static void addToWordMap(String[] wordArray, WordHashMap wordMap,String documentName) {
         for (String word : wordArray) {
-            if (word.equals("the")) {
-                System.out.println(wordMap.get(word));
-            }
             if (wordMap.get(word) != null && !wordMap.get(word).contains(documentName)) {
                 wordMap.get(word).add(documentName);
             }
