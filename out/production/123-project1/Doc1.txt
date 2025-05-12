@@ -1,12 +1,1 @@
-Hello class, 
-   The lesson for today is on the remaining types of trees. Watch the video to get an overview. Then answer the activity in the classwork.
-Binary Search Trees
-AVL Trees
-Red-Black Trays
-Splay trees
-Heaps
-or
-and
-AND
-
-69minutes
+I like the class on data structures and algorithms. The course was so much fun, and we are thankful to the professor for providing valuable insights on Algorithms, Trees, Sorting, and etc. We learned a lot and truly enjoyed the course and its activities. Thank you for the sem ma'am.

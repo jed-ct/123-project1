@@ -8,20 +8,24 @@ INSTRUCTIONS
 2. Run the program in the terminal or your IDE.
 3. The program will prompt you to enter your query. Supported queries include
    - a single word search (Ex. "dog")
-   - an OR word search (Ex. "dog OR cat OR rat")
+   - an OR word search (Ex. "dog OR cat OR rat
+      - This will search for documents containing either word inputted by the user
+      - For cases where one word is not found in any document and the other word is in at least one of the documents, a warning sign will be displayed, but will still search and display the documents containing the found word
    - an AND word search (Ex. "dog AND cat AND rat").
+      - This will only search for documents containing both words inputted by the user
 4. The program will search the documents for the specified word(s). If found, it will display the list of documents containing them. Otherwise, it will show an appropriate error or warning message.
 5. After each search, the program will ask if you want to search again. Enter Y to continue or any other key to exit.
 
 
 NOTES
 - Only one type of logical operator (OR` or AND) may be used per search. A combination of both (Ex. "dog OR cat AND mouse") will return an error.
+- The logical operators must be uppercased when inputting in the search query.
 - Queries are case-insensitive, meaning that "Dog", "dog", and "dOG" are treated the same when searched.
 
 AUTHORS
-- Jedric Tuquero
-- Duncan Red Benedict De Guzman
-- Frian Karl Nabo
+- De Guzman, Duncan Red Benedict
+- Nabo, Frian Karl
+- Tuquero, Jedric
 
 
 
