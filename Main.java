@@ -11,6 +11,20 @@ public class Main {
     //Label of documents that will be outputted in the search engine. Make sure it is the same length as docFiles
     private static String[] docLabels = {"Document 1", "Document 2", "Document 3"};
 
+    //Reads the document file with the corresponding filename
+    private static String readDocument(String filename) {
+        StringBuilder content = new StringBuilder();
+        try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                content.append(line).append(" ");
+            }
+        } catch (IOException e) {
+            System.out.println("Cannot find document: " + filename);
+        }
+        return content.toString().trim();
+    }
+
     //Converts a string into an array of words
     private static String[] convertToWordArray(String sentence) {
         //remove punctuation and use space as separator
@@ -114,21 +128,6 @@ public class Main {
             }
         }
     }
-
-    //Reads the document file with the corresponding filename
-    private static String readDocument(String filename) {
-        StringBuilder content = new StringBuilder();
-        try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                content.append(line).append(" ");
-            }
-        } catch (IOException e) {
-            System.out.println("Cannot find document: " + filename);
-        }
-        return content.toString().trim();
-    }
-
 
     public static void main(String args[]) {
         WordHashMap wordMap = new WordHashMap(50);
