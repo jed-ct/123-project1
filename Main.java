@@ -119,9 +119,6 @@ public class Main {
     //Adds individual words to hashmap along with their corresponding locations
     private static void addToWordMap(String[] wordArray, WordHashMap wordMap,String documentName) {
         for (String word : wordArray) {
-            if (word.equals("the")) {
-                System.out.println(wordMap.get(word));
-            }
             if (wordMap.get(word) != null && !wordMap.get(word).contains(documentName)) {
                 wordMap.get(word).add(documentName);
             }
