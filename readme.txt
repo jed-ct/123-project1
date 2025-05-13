@@ -18,9 +18,13 @@ INSTRUCTIONS
 
 
 NOTES
+- The search engine can only search for one word at a time. To search for multiple words, a logical operator must be used in the query.
+- This program can handle searches with apostrophes(') and numbers.
 - Only one type of logical operator (OR` or AND) may be used per search. A combination of both (Ex. "dog OR cat AND mouse") will return an error.
+- The use of multiple operators are allowed as long as they are of the same type (Ex. "dog AND cat AND mouse").
 - The logical operators must be uppercased when inputting in the search query.
 - Queries are case-insensitive, meaning that "Dog", "dog", and "dOG" are treated the same when searched.
+- Multiple white spaces between the word and the logical operator will be ignored (Ex. "dog        AND         cat").
 
 AUTHORS
 - De Guzman, Duncan Red Benedict
